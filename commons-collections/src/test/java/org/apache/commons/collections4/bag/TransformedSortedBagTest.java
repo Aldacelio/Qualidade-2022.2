@@ -49,15 +49,15 @@ public class TransformedSortedBagTest<T> extends AbstractSortedBagTest<T> {
     @SuppressWarnings("unchecked")
     public void testTransformedBag() {
         final SortedBag<T> bag = TransformedSortedBag.transformingSortedBag(new TreeBag<T>(), (Transformer<T, T>) TransformedCollectionTest.STRING_TO_INTEGER_TRANSFORMER);
-        assertEquals(0, bag.size());
+        assertEquals("Value bag size 0.",0, bag.size());
         final Object[] els = {"1", "3", "5", "7", "2", "4", "6"};
         for (int i = 0; i < els.length; i++) {
             bag.add((T) els[i]);
-            assertEquals(i + 1, bag.size());
-            assertTrue(bag.contains(Integer.valueOf((String) els[i])));
+            assertEquals("Current bag size is "+i+1+".", i + 1, bag.size());
+            assertTrue("The bag contain.",bag.contains(Integer.valueOf((String) els[i])));
         }
 
-        assertTrue(bag.remove(Integer.valueOf((String) els[0])));
+        assertTrue("The remove successful",bag.remove(Integer.valueOf((String) els[0])));
 
     }
 
@@ -69,7 +69,7 @@ public class TransformedSortedBagTest<T> extends AbstractSortedBagTest<T> {
             originalBag.add((T) el);
         }
         final SortedBag<T> bag = TransformedSortedBag.transformedSortedBag(originalBag, (Transformer<T, T>) TransformedCollectionTest.STRING_TO_INTEGER_TRANSFORMER);
-        assertEquals(els.length, bag.size());
+        assertEquals("The size of bag is 7",els.length, bag.size());
         for (final Object el : els) {
             assertTrue(bag.contains(Integer.valueOf((String) el)));
         }
